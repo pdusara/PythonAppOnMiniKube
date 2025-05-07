@@ -30,17 +30,6 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
 
-      - name: Debug Current Directory
-        run: |
-          echo "Current Directory: $(pwd)"
-          echo "Listing Files:"
-          ls -la
-          
-      - name: Verify Deployment Files
-        run: |
-          test -f deployment-definition.yaml || (echo "deployment-definition.yaml not found!" && exit 1)
-          test -f service-defintion.yaml || (echo "service-defintion.yaml not found!" && exit 1)
-
       - name: Deploy to Minikube
         run: |
           minikube start
