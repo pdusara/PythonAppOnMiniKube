@@ -27,12 +27,15 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
 
-      - name: List Files
-        run: ls -R
+      - name: Debug Current Directory
+        run: |
+          echo "Current Directory: $(pwd)"
+          echo "Listing Files:"
+          ls -la
 
       - name: Deploy to Minikube
         run: |
           minikube start
           minikube image load my-python-app:latest
-          kubectl apply -f ../../deployment-definition.yaml
-          kubectl apply -f ../.././service-defintion.yaml
+          kubectl apply -f deployment-definition.yaml
+          kubectl apply -f service-defintion.yaml
