@@ -31,5 +31,5 @@ jobs:
         run: |
           minikube start
           minikube image load my-python-app:latest
-          kubectl apply -f deployment-definition.yaml
-          kubectl apply -f service-definition.yaml
+          kubectl apply -f ../../deployment-definition.yaml
+          kubectl apply -f ../.././service-defintion.yaml
