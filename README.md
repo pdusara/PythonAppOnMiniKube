@@ -17,7 +17,7 @@ This project demonstrates a simple Python application that runs inside a Docker 
 ### 1. Build the Docker Image
 Run the following command to build the Docker image:
 ```sh
-docker build -t pythonprojects:latest .
+docker build -t my-python-app:latest .
 
 Here’s the updated README.md with the rest of the steps documented:
 
@@ -41,7 +41,7 @@ This project demonstrates a simple Python application that runs inside a Docker 
 ### 1. Build the Docker Image
 Run the following command to build the Docker image:
 ```sh
-docker build -t pythonprojects:latest .
+docker build -t my-python-app:latest .
 ```
 
 ### 2. Start MiniKube
