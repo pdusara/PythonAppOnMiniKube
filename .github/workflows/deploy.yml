@@ -29,9 +29,17 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
 
+      - name: Start Minikube and Set Context
+        run: |
+          minikube status || minikube start
+          kubectl config use-context minikube
+
+      - name: Verify Minikube Status
+        run: |
+          kubectl cluster-info
+
       - name: Deploy to Minikube
         run: |
-          minikube start
           minikube image load my-python-app:latest
           kubectl apply -f deployment-definition.yaml
           kubectl apply -f service-defintion.yaml
