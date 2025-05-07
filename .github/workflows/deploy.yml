@@ -1,4 +1,4 @@
-name: CI?CD for Helloworld Python App
+name: CI/CD for Helloworld Python App
 on:
   push:
     branches:
