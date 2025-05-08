@@ -43,6 +43,7 @@ jobs:
           minikube image load my-python-app:latest
           kubectl apply -f deployment-definition.yaml
           kubectl apply -f service-definition.yaml
+
       - name: Ensure deployment is rolled out
         run: |
           kubectl rollout status deployment/helloworld
@@ -50,6 +51,11 @@ jobs:
             echo "Deployment failed to roll out!"
             exit 1
           fi
+
+      - name: Fetch Pod Logs for Debugging
+        if: failure() # Run this step only if the previous step fails
+        run: |
+          kubectl get pods -l app=helloworld-app -o name | xargs -I {} kubectl logs {}
 
   test:
     runs-on: ubuntu-latest
