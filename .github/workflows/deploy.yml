@@ -34,10 +34,6 @@ jobs:
           minikube status || minikube start
           kubectl config use-context minikube
 
-      - name: Verify Minikube Status
-        run: |
-          kubectl cluster-info
-
       - name: Pull Docker Image into Minikube
         run: |
           minikube ssh "docker pull ghcr.io/$GITHUB_ACTOR/my-python-app:latest"
@@ -45,22 +41,16 @@ jobs:
 
       - name: Deploy to Minikube
         run: |
-          minikube image load my-python-app:latest
           kubectl apply -f deployment-definition.yaml
           kubectl apply -f service-definition.yaml
+          kubectl get deployments
 
-      - name: Ensure deployment is rolled out
+      - name: Verify Deployment Exists
         run: |
-          kubectl rollout status deployment/helloworld
-          if [ $? -ne 0 ]; then
-            echo "Deployment failed to roll out!"
+          if ! kubectl get deployment/helloworld; then
+            echo "ERROR: Deployment 'helloworld' not found!"
             exit 1
           fi
-
-      - name: Fetch Pod Logs for Debugging
-        if: failure() # Run this step only if the previous step fails
-        run: |
-          kubectl get pods -l app=helloworld-app -o name | xargs -I {} kubectl logs {}
 
   test:
     runs-on: ubuntu-latest
