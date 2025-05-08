@@ -36,6 +36,25 @@ This project demonstrates a simple Python application that runs inside a Docker 
 - [MiniKube](https://minikube.sigs.k8s.io/docs/) installed and configured.
 - [kubectl](https://kubernetes.io/docs/tasks/tools/) CLI installed.
 
+## CI/CD Pipeline
+This project includes a CI/CD pipeline implemented using GitHub Actions. The pipeline automates the following steps:
+1. **Build Stage**:
+   - Builds a Docker image for the application.
+   - Pushes the image to the GitHub Container Registry (`ghcr.io`).
+2. **Deploy Stage**:
+   - Starts MiniKube and sets the Kubernetes context.
+   - Pulls the Docker image into MiniKube.
+   - Deploys the application to the MiniKube cluster using Kubernetes manifests.
+   - Verifies the deployment, service, and pod status.
+   - Validates the application logs to ensure the expected output.
+
+### Known Issue
+An issue was encountered during the pipeline implementation: **MiniKube does not persist across stages in GitHub Actions**. This means that MiniKube's state is reset between the `build` and `deploy` stages. As a result:
+- Post-deployment tests, such as verifying logs and pod status, had to be integrated into the `deploy` stage instead of being run as a separate `test` stage.
+
+This limitation was addressed by combining deployment and testing into a single stage, ensuring the pipeline remains functional.
+
+
 ## How to Use
 
 ### 1. Build the Docker Image
