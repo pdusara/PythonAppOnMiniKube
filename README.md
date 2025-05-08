@@ -6,6 +6,7 @@ This project demonstrates a simple Python application that runs inside a Docker 
 - A Python script (`HelloWorld.py`) that continuously prints messages to the console.
 - Dockerized application for easy deployment.
 - Kubernetes deployment and service definitions for running the app in a cluster.
+- CI/CD pipeline using GitHub Actions.
 
 ## Prerequisites
 - [Docker](https://www.docker.com/) installed on your machine.
