@@ -1,6 +1,6 @@
 # HelloWorld Python App on MiniKube
 
-This project demonstrates a simple Python application that runs inside a Docker container and prints "Hello, World!" along with the hostname of the pod it is running on. It is designed to be deployed on a Kubernetes cluster using MiniKube with is load balanced.
+This project demonstrates a simple Python application that runs inside a Docker container and prints "Hello, World!" along with the hostname of the pod it is running on. It is designed to be deployed on a Kubernetes cluster using MiniKube with load balancing.
 
 ## Features
 - A Python script (`HelloWorld.py`) that continuously prints messages to the console.
@@ -19,8 +19,6 @@ This project demonstrates a simple Python application that runs inside a Docker 
 Run the following command to build the Docker image:
 ```sh
 docker build -t my-python-app:latest .
-
-Here’s the updated README.md with the rest of the steps documented:
 
 ```markdown
 # HelloWorld Python App on MiniKube
